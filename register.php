@@ -1,5 +1,5 @@
 <?php
 
-include 'templates/layouts/header.html';
+include 'header.php';
 include 'templates/register.html';
-include 'templates/layouts/footer.html';
+include 'footer.php';

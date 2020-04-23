@@ -8,6 +8,7 @@ RewriteRule ^about about.php
 RewriteRule ^services services.php
 RewriteRule ^contact contact.php
 RewriteRule ^index index.php
+RewriteRule ^home index.php
 RewriteRule ^what-we-do what-we-do.php
 RewriteRule ^privacy-policy privacy-policy.php
 RewriteRule ^terms-conditions terms-conditions.php
@@ -15,3 +16,4 @@ RewriteRule ^terms-user terms-user.php
 RewriteRule ^login login.php
 RewriteRule ^signup register.php
 RewriteRule ^return-policy return-policy.php
+RewriteRule ^logout logout.php

@@ -24,6 +24,11 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
+<style type="text/css">
+	.agree-danger::before{
+		border: 1px solid red;
+	}
+</style>
 <body style="background-color: #999999;">
 	
 	<div class="limiter">
@@ -31,10 +36,14 @@
 			<div class="login100-more" style="background-image: url('img/bg-01.jpg');"></div>
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="lib/signup.php" method="get">
 					<span class="login100-form-title p-b-59">
 						Sign Up
 					</span>
+					
+					<div class="form-group">
+						<span class="err-mssg text-danger"></span>
+					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Name is required">
 						<span class="label-input100">Full Name</span>
@@ -56,20 +65,22 @@
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="text" name="pass" placeholder="*************">
+						<a href="#" class="ml-2 show-pass" data-toggle="0"><i class="fa fa-eye"></i></a>
+						<input class="input100" type="password" name="pass" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
 						<span class="label-input100">Repeat Password</span>
-						<input class="input100" type="text" name="repeat-pass" placeholder="*************">
+						<a href="#" class="ml-2 show-repeat-pass" data-toggle="0"><i class="fa fa-eye"></i></a>
+						<input class="input100" type="password" name="repeat-pass" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="flex-m w-full p-b-33">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
+							<input class="input-checkbox100 agree" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100 agree-label" for="ckb1">
 								<span class="txt1">
 									I agree to the
 									<a href="terms-user" class="txt2 hov1">
@@ -77,15 +88,23 @@
 									</a>
 								</span>
 							</label>
-						</div>
+						</div>						
+					</div>
 
-						
+					<div class="form-group">
+						<span class="err-mssg text-danger"></span>
+					</div>
+					<div class="form-group">
+						<span class="loading text-warning"></span>
+					</div>
+					<div class="form-group">
+						<span class="success text-primary"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button class="login100-form-btn signup">
 								Sign Up
 							</button>
 						</div>
@@ -118,6 +137,7 @@
 	<script src="js/main.js"></script>
 	<script type="text/javascript">
 		$('.classynav').hide();
+		
 		$(window).bind('mousewheel', function(event) {
 		    if (event.originalEvent.wheelDelta >= 0) {
 		        console.log('Scroll up');
@@ -125,6 +145,72 @@
 		    else {
 		        console.log('Scroll down');
 		    }
+		});
+
+		function isEmail(email) {
+		  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		  return regex.test(email);
+		}
+
+		$(document).on('click', '.signup', function(event) {
+			event.preventDefault();
+			var fullname = $("input[name='name']").val();
+			var username = $("input[name='username']").val();
+			var email = $("input[name='email']").val();
+			var password = $("input[name='pass']").val();
+
+			if (fullname == '' || username == '' || email == '' || password == '') {
+				$('.err-mssg').text('Please fill all the filed');				
+			}else{
+				if ($('.agree').is(":checked") == true) {
+					$('.agree-label').removeClass('agree-danger');
+					if ($("input[name='pass']").val() == $("input[name='repeat-pass']").val()) {
+						if (isEmail(email) == true) {
+							$('.err-mssg').text('');
+							$.ajax({
+								url: 'lib/signup.php',
+								method: 'POST',
+								data: {fullname:fullname, username:username, email:email, password:password},
+								beforeSend: function(){
+									$('.loading').text('Loading. . . . .');
+								},
+								success: function(data){
+									$('.loading').text('');
+									$('.success').text(data);
+								}
+							});
+							
+						}else{
+							$('.err-mssg').text('E-mail is not valid');
+						}
+					}else{
+						$('.err-mssg').text("Password didn't matched");
+					}
+				}else{
+					$('.agree-label').addClass('agree-danger');
+					$('.err-mssg').text('You have to agree with our user terms');
+				}
+			}
+		});
+
+		$('.show-repeat-pass').click(function() {
+			if ($(this).attr('data-toggle') == '0') {
+				$("input[name='repeat-pass']").attr('type', 'text');
+				$(this).attr('data-toggle', '1');
+			}else{
+				$("input[name='repeat-pass']").attr('type', 'password');
+				$(this).attr('data-toggle', '0');
+			}
+		});
+
+		$('.show-pass').click(function() {
+			if ($(this).attr('data-toggle') == '0') {
+				$("input[name='pass']").attr('type', 'text');
+				$(this).attr('data-toggle', '1');
+			}else{
+				$("input[name='pass']").attr('type', 'password');
+				$(this).attr('data-toggle', '0');
+			}
 		});
 	</script>
 </body>
