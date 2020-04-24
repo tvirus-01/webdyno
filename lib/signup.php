@@ -34,10 +34,7 @@ function sendMail($email, $token, $username){
 	$subject = 'Activate your account';
 
 	$message = '';
-	$message .= '<html><body>';
-	$message .= '<h1>Hello </h1>'.$username;
-	$message .= '<br><span>';
-	$message .= 'Please <a href="https://webdyno.net/activate?token="'.$token.' style="color: orange;">click here</a> to activate your account';
+	$message .= 'Please click this https://webdyno.net/activate?token='.$token.' to activate your account';
 	$message .= '</span>';
 	$message .= '</html></body>';
 
@@ -67,8 +64,9 @@ if (isset($_POST['fullname'])) {
 		$sql = "INSERT INTO `tbl_users` (`id`, `name`, `email`, `password`, `username`) VALUES (NULL, '{$fullname}', '{$email}', '{$hashpass}', '{$username}')";
 
 		if ($conn->query($sql) === TRUE) {
-			echo "User registraion successful. please see your email to activate your account";
-
+			//echo "User registraion successful. please see your email to activate your account";
+			echo "User registraion successful.";
+			
 			$token = getToken(22);
 			$type = 'client';
 			$last_id = $conn->insert_id;
@@ -76,7 +74,7 @@ if (isset($_POST['fullname'])) {
 			$conn->query("INSERT INTO `tbl_user_meta` (`id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, {$last_id}, 'type', '{$type}')");
 			$conn->query("INSERT INTO `tbl_user_meta` (`id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, {$last_id}, 'token', '{$token}')");
 
-			sendMail($email, $token, $username);
+			//sendMail($email, $token, $username);
 
 		}else{
 			echo "!!error";
