@@ -91,19 +91,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    
 </body>
 
 </html>
 
 <script type="text/javascript">
-    user_ss = "<?php echo $_SESSION['user_name']; ?>";
+    
+$('a[href="login"]').hide();
+$('a[href="account"]').hide();
+    // user_ss = "<?php //echo $_SESSION['user_name']; ?>";
 
-    if (user_ss != '') {
-        $('a[href="login"]').hide();
-        $('a[href="account"]').show();
-    }else{
-        $('a[href="login"]').show();
-        $('a[href="account"]').hide();        
-    }
+    // if (user_ss != '') {
+    //     $('a[href="login"]').hide();
+    //     $('a[href="account"]').show();
+    // }else{
+    //     $('a[href="login"]').show();
+    //     $('a[href="account"]').hide();        
+    // }
     
 </script>

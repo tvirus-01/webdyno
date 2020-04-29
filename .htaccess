@@ -17,3 +17,9 @@ RewriteRule ^login login.php
 RewriteRule ^signup register.php
 RewriteRule ^return-policy return-policy.php
 RewriteRule ^logout logout.php
+RewriteRule ^dbh lib/dbh.php
+RewriteRule ^web-development store.php
+RewriteRule ^digital-marketing store.php
+RewriteRule ^automation store.php
+RewriteRule ^item/([0-9]+) items.php
+RewriteRule ^item items.php

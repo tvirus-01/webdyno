@@ -1,0 +1,87 @@
+<style type="text/css">
+</style>
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(img/bg-img/8.jpg);">
+    <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2 class="service-name">service name</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+
+    <div class="row">
+      <div class="col">
+
+        <div class="card mt-4">
+          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+          <div class="card-body">
+            <h3 class="card-title">Product Name</h3>
+            <h5 class="price"></h5>
+            <div class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</div>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+            5.0 stars
+          </div>
+        </div>
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">
+            Product Reviews
+          </div>
+          <div class="card-body reviews"></div>
+        </div>
+
+        <div class="card card-outline-secondary my-4 leave_reviews" style="display: none;">
+          <div class="card-header font-weight-bold" id="leave_review">
+           leave your review
+          </div>
+          <div class="card-body col-7">
+              <div class="form-group">
+                  <label>Order Number</label>
+                  <input type="text" name="order_number" class="form-control">
+                  <span class="text-danger err_rev"></span>
+              </div>
+              <div class="form-group">
+                  <label>Feedback</label>
+                  <textarea class="form-control" name="review"></textarea>
+              </div>
+              <div class="form-group">
+                  <label>Rating</label>
+                  <input type="hidden" name="rating" id="rating_count">
+                  <div class="rate text-warning" style="font-size: 40px;"></div>
+              </div>
+              <div class="form-group">
+                  <input type="checkbox" name="anonymous" class="mr-2">
+                  <label>Review as Anonymous</label>
+              </div>
+              <div>
+                    <button class="btn btn-primary btn-lg submit_review float-right">Review</button>
+              </div>
+          </div>
+        </div>
+        <!-- /.card -->
+        <div class="card card-outline-secondary my-4 py-4 px-2">
+            <div class="row">
+                <div class="col-9">
+                    <p class="text-danger float-left">You have to pay 30% in advanced to order <br> Since we don't have any onsite payment system yet so we can't take order here. please contact us at <a href="mailto:office@webdyno.net">office@webdyno.net</a> to give an order</p>                
+                </div>
+                <div class="col-3">
+                    <br>
+                    <button class="btn btn-secondary float-right mr-3" disabled>Order Now</button>             
+                </div>
+            </div>        
+        </div>
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+
+  </div>
+
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+<script src="js/rater.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/item.js"></script>
